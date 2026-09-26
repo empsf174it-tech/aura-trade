@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraTrade | Modern Stock Brokerage & Trading Platform</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <meta name="description"
+        content="AuraTrade is a premium stock brokerage platform offering equities, derivatives, and mutual funds trading with robust tools.">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body>
+
+    <!-- Overlay for Mobile Drawer -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- Mobile Drawer -->
+    <aside class="drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+                <i class="ph ph-x"></i>
+            </button>
+        </div>
+        <nav class="drawer-nav">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#markets" class="nav-link">Markets</a>
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#trust" class="nav-link">Trust</a>
+        </nav>
+        <div class="drawer-actions">
+            <button class="theme-toggle drawer-theme-toggle" aria-label="Toggle dark mode">
+                <i class="ph ph-sun theme-icon"></i>
+            </button>
+            <a href="#contact" class="btn btn-primary cta-btn">Contact</a>
+        </div>
+    </aside>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="#home" class="logo">
+            <i class="ph-fill ph-trend-up logo-icon"></i>
+            <span>AuraTrade</span>
+        </a>
+        <nav class="nav-links">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#markets" class="nav-link">Markets</a>
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#trust" class="nav-link">Trust</a>
+        </nav>
+        <div class="nav-actions">
+            <button class="theme-toggle nav-theme-toggle" aria-label="Toggle dark mode">
+                <i class="ph ph-sun theme-icon"></i>
+            </button>
+            <a href="#contact" class="btn btn-primary cta-btn">Contact</a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home">
+            <div class="bg-shape bg-shape-1"></div>
+            <div class="bg-shape bg-shape-2"></div>
+            <div class="container hero-content">
+                <h1 class="animate-fade-up">Trade with Precision.<br>Execute with Power.</h1>
+                <p class="animate-fade-up delay-1">Access global markets with advanced charting, deep liquidity, and
+                    institutional-grade execution speeds built for active traders.</p>
+                <div class="hero-actions animate-fade-up delay-2">
+                    <a href="#contact" class="btn btn-primary">Contact</a>
+                    <a href="#platforms" class="btn btn-outline">Explore Platforms</a>
+                </div>
+                <!-- Trust Strip -->
+                <div class="trust-strip animate-fade-up delay-3">
+                    <div class="trust-item"><i class="ph-fill ph-shield-check"></i> SEC Registered*</div>
+                    <div class="trust-item"><i class="ph-fill ph-lock-key"></i> SIPC Member*</div>
+                    <div class="trust-item"><i class="ph-fill ph-lightning"></i> &lt;10ms Execution</div>
+                    <div class="trust-item"><i class="ph-fill ph-bank"></i> Segregated Funds</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offering Highlights -->
+        <section id="offerings" class="container reveal">
+            <div class="section-header">
+                <h2>Comprehensive Market Access</h2>
+                <p>One unified account to trade across multiple asset classes with competitive leverage and margin
+                    rates.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon"><i class="ph ph-chart-line-up"></i></div>
+                    <h3>Equities</h3>
+                    <p>Access 10,000+ US and international stocks with fractional shares and zero commission trading.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="ph ph-activity"></i></div>
+                    <h3>Derivatives</h3>
+                    <p>Trade options and futures with advanced risk management tools and integrated strategy builders.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="ph ph-chart-pie-slice"></i></div>
+                    <h3>Mutual Funds</h3>
+                    <p>Diversify your portfolio with thousands of no-transaction-fee mutual funds from top asset
+                        managers.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Markets Section (Flexible 1) -->
+        <section id="markets" class="container reveal">
+            <div class="section-header">
+                <h2>Live Market Overview</h2>
+                <p>Analyze instrument performance and execute trades directly from our powerful web interface.</p>
+            </div>
+            <div class="markets-filters">
+                <button class="filter-btn active" data-filter="all">All Markets</button>
+                <button class="filter-btn" data-filter="equities">Equities</button>
+                <button class="filter-btn" data-filter="crypto">Crypto</button>
+                <button class="filter-btn" data-filter="forex">Forex</button>
+            </div>
+            <div class="grid-4" id="marketGrid">
+                <!-- Populated via JS -->
+            </div>
+        </section>
+
+        <!-- Pricing Section (Flexible 2) -->
+        <section id="pricing" class="container reveal">
+            <div class="section-header">
+                <h2>Transparent, Volume-Tiered Pricing</h2>
+                <p>No hidden fees. Choose the plan that aligns with your trading volume and required toolset.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card pricing-card">
+                    <h3>Standard</h3>
+                    <div class="pricing-price">$0<span>/mo</span></div>
+                    <p>Perfect for long-term investors and beginners.</p>
+                    <ul class="pricing-features">
+                        <li><i class="ph-fill ph-check-circle"></i> $0 Commission on US Stocks</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Basic Charting Tools</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Delayed Market Data</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Email Support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" style="width: 100%; margin-top: 16px;">Choose
+                        Standard</a>
+                </div>
+                <div class="card pricing-card popular">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3>Pro Trader</h3>
+                    <div class="pricing-price">$29<span>/mo</span></div>
+                    <p>For active traders requiring speed and depth.</p>
+                    <ul class="pricing-features">
+                        <li><i class="ph-fill ph-check-circle"></i> $0.50 per Options Contract</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Level II Market Data</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Advanced Technical Indicators</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Priority Phone Support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Choose Pro</a>
+                </div>
+                <div class="card pricing-card">
+                    <h3>API Access</h3>
+                    <div class="pricing-price">$99<span>/mo</span></div>
+                    <p>For algorithmic trading and quant funds.</p>
+                    <ul class="pricing-features">
+                        <li><i class="ph-fill ph-check-circle"></i> REST &amp; WebSocket API</li>
+                        <li><i class="ph-fill ph-check-circle"></i> High Rate Limits</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Direct Market Access (DMA)</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Dedicated Account Manager</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" style="width: 100%; margin-top: 16px;">Choose API</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Story Section -->
+        <section id="about" class="container reveal">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2>Built by Traders, For Traders</h2>
+                    <p>Founded in 2018, AuraTrade was born out of frustration with clunky, outdated broker interfaces
+                        and hidden fee structures. Our mission is to democratize institutional-grade trading tools for
+                        retail investors.</p>
+                    <p>We are a technology-first brokerage, prioritizing execution speed, platform reliability, and
+                        absolute transparency. With over $5B in processed volume and a rapidly growing community, we are
+                        just getting started.</p>
+                    <div style="margin-top: 16px; font-weight: 500;">
+                        <p><i class="ph-fill ph-certificate" style="color: var(--c-primary); margin-right: 8px;"></i>
+                            Fully Licensed Broker-Dealer*</p>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="assets/images/about-trading-desk-wide.jpg"
+                        alt="Trading desk with multiple monitors displaying charts">
+                </div>
+            </div>
+        </section>
+
+        <!-- Trading Platforms (Flexible 3) -->
+        <section id="platforms" class="container reveal">
+            <div class="section-header">
+                <h2>Trade Anywhere, Anytime</h2>
+                <p>Our ecosystem of trading platforms is designed to keep you connected to the markets, whether you are
+                    at your desk or on the move.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <img class="card-img" src="assets/images/platform-web-dashboard-card.jpg"
+                        alt="Web trading dashboard with charts" loading="lazy">
+                    <div class="card-icon"><i class="ph ph-laptop"></i></div>
+                    <h3>Aura Web</h3>
+                    <p>Our flagship browser-based platform. Fully customizable workspace, complex options chains, and
+                        real-time news feeds.</p>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="assets/images/platform-mobile-app-card.jpg"
+                        alt="Smartphone showing a mobile app" loading="lazy">
+                    <div class="card-icon"><i class="ph ph-device-mobile"></i></div>
+                    <h3>Aura Mobile</h3>
+                    <p>Native iOS and Android apps. Never miss a trade with biometric login, push alerts, and one-tap
+                        execution.</p>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="assets/images/platform-code-editor-card.jpg"
+                        alt="Code editor on a monitor" loading="lazy">
+                    <div class="card-icon"><i class="ph ph-code"></i></div>
+                    <h3>Aura API</h3>
+                    <p>Build your own trading algorithms with our robust, low-latency REST and WebSocket APIs for
+                        Python, Node, and Go.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust & Features -->
+        <section id="trust" class="container reveal">
+            <div class="section-header">
+                <h2>Security &amp; Reliability You Can Trust</h2>
+                <p>Your assets are protected by industry-leading security protocols and strict regulatory compliance.
+                </p>
+            </div>
+            <div class="grid-2">
+                <div class="card" style="text-align: left; align-items: flex-start;">
+                    <div class="card-icon"><i class="ph ph-shield-check"></i></div>
+                    <h3>Asset Protection</h3>
+                    <p>Client funds are fully segregated in tier-1 bank accounts. *Member of SIPC, which protects
+                        securities customers up to $500,000.</p>
+                </div>
+                <div class="card" style="text-align: left; align-items: flex-start;">
+                    <div class="card-icon"><i class="ph ph-lock-key"></i></div>
+                    <h3>Bank-Grade Security</h3>
+                    <p>Platform access is secured via AES-256 encryption, mandatory 2FA (Hardware Key or Authenticator),
+                        and real-time anomaly detection.</p>
+                </div>
+            </div>
+
+            <div class="feature-list">
+                <h3 style="text-align: center; margin-bottom: var(--space-6);">What Our Traders Say</h3>
+                <div class="grid-3">
+                    <div class="card testimonial-card">
+                        <i class="ph-fill ph-quotes quote-icon"></i>
+                        <p>"The execution speed on AuraTrade is unmatched. I've completely moved my active day trading
+                            portfolio here."</p>
+                        <div class="testimonial-author"><img src="assets/images/testimonial-avatar-male-trader-01.jpg"
+                                alt="Michael R." loading="lazy"><span><strong>Michael R.</strong><small>Proprietary
+                                    Trader</small></span></div>
+                    </div>
+                    <div class="card testimonial-card">
+                        <i class="ph-fill ph-quotes quote-icon"></i>
+                        <p>"Finally, a platform that doesn't crash during extreme market volatility. The desktop web app
+                            is incredibly responsive."</p>
+                        <div class="testimonial-author"><img src="assets/images/testimonial-avatar-female-trader-01.jpg"
+                                alt="Sarah K." loading="lazy"><span><strong>Sarah K.</strong><small>Options
+                                    Writer</small></span></div>
+                    </div>
+                    <div class="card testimonial-card">
+                        <i class="ph-fill ph-quotes quote-icon"></i>
+                        <p>"The API documentation is crystal clear, and the latency is consistently low. Perfect for my
+                            automated strategies."</p>
+                        <div class="testimonial-author"><img src="assets/images/testimonial-avatar-male-quant-01.jpg"
+                                alt="David T." loading="lazy"><span><strong>David T.</strong><small>Quant
+                                    Developer</small></span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="container reveal">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Have questions about institutional accounts or platform features? Our dedicated support team is ready
+                    to assist.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="ph ph-map-pin"></i>
+                        <div>
+                            <h4>Headquarters</h4>
+                            <p style="color: var(--c-text-muted);">100 Wall Street, Suite 500<br>New York, NY
+                                10005<br>(Placeholder Address)</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="ph ph-envelope"></i>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p style="color: var(--c-text-muted);">
+                                support@auratrade-placeholder.com<br>institutional@auratrade-placeholder.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="ph ph-phone"></i>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p style="color: var(--c-text-muted);">+1 (555) 019-2837<br>Mon-Fri, 8am-6pm EST</p>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#" aria-label="X (Twitter)"><i class="ph ph-x-logo"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+                        </div>
+                    </div>
+                    <!-- Secure Session Notice -->
+                    <div
+                        style="margin-top: auto; display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--c-secondary);">
+                        <i class="ph-fill ph-lock-key"></i> 🔒 Secure 256-bit connection
+                    </div>
+                </div>
+
+                <form id="contactForm" class="contact-form" novalidate>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" required placeholder="Jane Doe">
+                        <span class="error-message">Please enter your full name.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required placeholder="jane@example.com">
+                        <span class="error-message">Please enter a valid email address.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="inquiry">Inquiry Type</label>
+                        <select id="inquiry" class="form-control" required>
+                            <option value="">Select an option...</option>
+                            <option value="account">Account Opening</option>
+                            <option value="api">API Access</option>
+                            <option value="institutional">Institutional Services</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="error-message">Please select an inquiry type.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" rows="4" required
+                            placeholder="How can we help you?"></textarea>
+                        <span class="error-message">Please enter a message.</span>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="consent" required>
+                        <label for="consent"
+                            style="font-weight: 400; font-size: 0.875rem; color: var(--c-text-muted);">I agree to the
+                            privacy policy and terms of service.</label>
+                    </div>
+                    <span class="error-message" id="consentError" style="margin-top: -12px;">You must agree to the
+                        terms.</span>
+
+                    <button type="submit" class="btn btn-primary" style="margin-top: 16px;">Send Message</button>
+
+                    <div id="formSuccess" class="success-message">
+                        <i class="ph-fill ph-check-circle"></i> Message sent successfully! We will get back to you
+                        shortly.
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo"
+                        style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: var(--fw-h1); display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                        <i class="ph-fill ph-trend-up logo-icon"></i>
+                        <span>AuraTrade</span>
+                    </div>
+                    <p style="color: var(--c-text-muted); font-size: 0.875rem;">Next-generation brokerage for the modern
+                        trader. Speed, reliability, and precision at your fingertips.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="X (Twitter)"><i class="ph ph-x-logo"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <div class="footer-links">
+                        <a href="#home">Home</a>
+                        <a href="#markets">Markets</a>
+                        <a href="#pricing">Pricing</a>
+                        <a href="#platforms">Apps &amp; API</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a href="#about">About Us</a>
+                        <a href="#trust">Trust &amp; Security</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <div class="footer-links">
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="disclaimer">*Placeholder Disclosure: AuraTrade is a fictional, placeholder brokerage brand
+                    created for demonstration purposes. It is not a real financial institution. Trading involves risk,
+                    including the possible loss of principal. Past performance is not indicative of future results. All
+                    figures and returns shown are estimates/placeholders and not investment advice.</p>
+                <p>&copy; <span id="year"></span> AuraTrade. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- View Details Modal (For Markets) -->
+    <div class="modal-overlay" id="marketModalOverlay">
+        <div class="modal" id="marketModal">
+            <div class="modal-header">
+                <div>
+                    <h3 id="modalTitle" style="font-size: 1.5rem;">AAPL</h3>
+                    <p id="modalName" style="color: var(--c-text-muted); font-size: 0.875rem;">Apple Inc.</p>
+                </div>
+                <button class="modal-close" id="modalClose" aria-label="Close details">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px;">
+                    <span class="price" id="modalPrice" style="font-size: 2rem;">$150.00</span>
+                    <span class="change" id="modalChange">+1.5%</span>
+                </div>
+
+                <!-- Chart Placeholder -->
+                <div class="modal-chart" id="modalChart"
+                    style="height: 150px; width: 100%; border: 1px solid var(--c-border); border-radius: 8px; margin-bottom: 24px; position: relative; overflow: hidden; background: var(--c-bg);">
+                    <svg viewBox="0 0 300 150" preserveAspectRatio="none"
+                        style="width: 100%; height: 100%; display: block;">
+                        <defs>
+                            <linearGradient id="modalChartFill" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="currentColor" stop-opacity="0.25" />
+                                <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+                        <g stroke="var(--c-border)" stroke-width="1" stroke-dasharray="3 4" opacity="0.6">
+                            <line x1="0" y1="37" x2="300" y2="37" />
+                            <line x1="0" y1="75" x2="300" y2="75" />
+                            <line x1="0" y1="112" x2="300" y2="112" />
+                        </g>
+                        <g class="chart-up">
+                            <path
+                                d="M0,120 L20,112 L40,116 L60,100 L80,104 L100,88 L120,92 L140,76 L160,82 L180,64 L200,70 L220,52 L240,58 L260,40 L280,44 L300,28 L300,150 L0,150 Z"
+                                fill="url(#modalChartFill)" />
+                            <path
+                                d="M0,120 L20,112 L40,116 L60,100 L80,104 L100,88 L120,92 L140,76 L160,82 L180,64 L200,70 L220,52 L240,58 L260,40 L280,44 L300,28"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"
+                                vector-effect="non-scaling-stroke" />
+                        </g>
+                        <g class="chart-down">
+                            <path
+                                d="M0,30 L20,38 L40,34 L60,50 L80,46 L100,62 L120,58 L140,74 L160,68 L180,86 L200,80 L220,98 L240,92 L260,108 L280,104 L300,120 L300,150 L0,150 Z"
+                                fill="url(#modalChartFill)" />
+                            <path
+                                d="M0,30 L20,38 L40,34 L60,50 L80,46 L100,62 L120,58 L140,74 L160,68 L180,86 L200,80 L220,98 L240,92 L260,108 L280,104 L300,120"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"
+                                vector-effect="non-scaling-stroke" />
+                        </g>
+                    </svg>
+                    <div
+                        style="position: absolute; bottom: 8px; right: 8px; font-size: 0.75rem; color: var(--c-text-muted);">
+                        *Static chart</div>
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">Volume</div>
+                        <div class="stat-value">54.2M</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Avg Vol (3m)</div>
+                        <div class="stat-value">62.1M</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Market Cap</div>
+                        <div class="stat-value">2.8T</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">P/E Ratio</div>
+                        <div class="stat-value">28.5</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" style="flex: 1;">Add to Watchlist</button>
+                <button class="btn btn-primary" style="flex: 1;">Trade Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/markets.js"></script>
+</body>
+
+</html>
