@@ -70,10 +70,34 @@ document.addEventListener('DOMContentLoaded', () => {
     if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
     if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
 
-    // Close drawer when clicking a link inside it
+    // Scroll to a section, offset by the fixed navbar height
+    const navbar = document.querySelector('.navbar');
+
+    function scrollToSection(target) {
+        const offset = navbar ? navbar.offsetHeight : 0;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+    }
+
+    // Drawer links (mobile, 768, 1024): close the drawer, then take the user to the section
     const drawerLinks = document.querySelectorAll('.drawer-nav .nav-link, .drawer-actions .btn');
     drawerLinks.forEach(link => {
-        link.addEventListener('click', closeDrawer);
+        link.addEventListener('click', (e) => {
+            const hash = link.getAttribute('href');
+            const target = hash && hash.startsWith('#') ? document.querySelector(hash) : null;
+            closeDrawer();
+            if (!target) return;
+
+            e.preventDefault();
+            document.querySelectorAll('.drawer-nav .nav-link, .navbar .nav-link').forEach(l => {
+                l.classList.toggle('active', l.getAttribute('href') === hash);
+            });
+            // Wait for body scroll to be restored before scrolling
+            requestAnimationFrame(() => {
+                scrollToSection(target);
+                history.replaceState(null, '', hash);
+            });
+        });
     });
 
     // 4. Scroll-Spy (Intersection Observer)
@@ -122,7 +146,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // 6. Form Validation
+    // 6. FAQ Dropdowns
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.toggle('open');
+            btn.setAttribute('aria-expanded', String(isOpen));
+        });
+    });
+
+    // 7. Back to Top
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        const toggleBackToTop = () => {
+            backToTop.classList.toggle('show', window.scrollY > 400);
+        };
+        window.addEventListener('scroll', toggleBackToTop, { passive: true });
+        toggleBackToTop();
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // 8. Form Validation
     const contactForm = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
     const submitBtn = contactForm ? contactForm.querySelector('button[type="submit"]') : null;
